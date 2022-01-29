@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthComponent : MonoBehaviour
 {
     public float _maxHealth = 100f;
     public float _currentHealth = 100f;
+
+    public Slider _slider;
 
     public void AddHealth(float healthToAdd)
     {
@@ -25,5 +28,13 @@ public class HealthComponent : MonoBehaviour
     public void ReduceMaxHealth(float healthToReduce)
     {
         _maxHealth = Mathf.Clamp(_maxHealth - healthToReduce, 1f, float.MaxValue);
+    }
+
+    private void Update()
+    {
+        if (_slider != null)
+        {
+            _slider.value = _currentHealth / _maxHealth;
+        }
     }
 }
