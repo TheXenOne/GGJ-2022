@@ -325,7 +325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823382650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.2, y: 0.45, z: -3}
+  m_LocalPosition: {x: 4.2, y: 0.45, z: -7.33}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -532,11 +532,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4886712648710128118, guid: 16c850617799810439588104c8e5ee65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.089962
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4886712648710128118, guid: 16c850617799810439588104c8e5ee65, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.13701144
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4886712648710128118, guid: 16c850617799810439588104c8e5ee65, type: 3}
       propertyPath: m_LocalPosition.z
@@ -587,25 +587,21 @@ PrefabInstance:
       propertyPath: _healthUISlider
       value: 
       objectReference: {fileID: 415769952}
-    - target: {fileID: 7497220702632344866, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
-      propertyPath: _startWithControl
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7497220702632344869, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7497220702632344869, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.089962
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7497220702632344869, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.13701144
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7497220702632344869, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.47
+      value: -6.32
       objectReference: {fileID: 0}
     - target: {fileID: 7497220702632344869, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -638,10 +634,6 @@ PrefabInstance:
     - target: {fileID: 7497220702632344871, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
       propertyPath: m_Name
       value: Seal
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497220702632344894, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
-      propertyPath: _startWithControl
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}

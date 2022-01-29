@@ -6,21 +6,30 @@ using UnityEngine;
 public class LandController : MonoBehaviour
 {
     public bool _startWithControl = true;
-    public float _moveSpeed = 5f;
+    public float _moveSpeed = 2f;
+    public float _controlTransitionTime = 0.7f;
+    public float _transitionDrag = 5f;
+    public float _rotationSpeed = 5f;
 
     [HideInInspector]
     public bool _hasControl = false;
+    [HideInInspector]
+    public bool _isTransitioning = false;
+    [HideInInspector]
+    public Vector2 _movement;
 
     VehicleController _vehicleController;
     Rigidbody2D _rigidbody;
-    Vector2 _movement;
+    float _transitionTimer = 0f;
 
     public void TakeControl()
     {
         _hasControl = true;
         _vehicleController._hasControl = false;
-        _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        _rigidbody.MoveRotation(0f);
+        _vehicleController._isTransitioning = false;
+        _isTransitioning = true;
+        _transitionTimer = 0f;
+        _rigidbody.drag = _transitionDrag;
     }
 
     void Awake()
@@ -34,19 +43,24 @@ public class LandController : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (_hasControl)
         {
-            _movement.x = Input.GetAxis("Horizontal");
-            _movement.y = Input.GetAxis("Vertical");
+            if (_isTransitioning)
+            {
+                _transitionTimer += Time.deltaTime;
+                if (_transitionTimer > _controlTransitionTime)
+                {
+                    _isTransitioning = false;
+                }
+            }
+            else
+            {
+                _movement.x = Input.GetAxis("Horizontal");
+                _movement.y = Input.GetAxis("Vertical");
+                _movement.Normalize();
+            }
         }
     }
 
@@ -54,7 +68,17 @@ public class LandController : MonoBehaviour
     {
         if (_hasControl)
         {
-            _rigidbody.MovePosition(_rigidbody.position + _movement * _moveSpeed * Time.fixedDeltaTime);
+            if (!_isTransitioning)
+            {
+                _rigidbody.MovePosition(_rigidbody.position + _movement * _moveSpeed * Time.fixedDeltaTime);
+
+                if (_movement.sqrMagnitude > 0f)
+                {
+                    float targetAngle = (Mathf.Atan2(-_movement.x, _movement.y)) * Mathf.Rad2Deg;
+
+                    _rigidbody.MoveRotation(Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(targetAngle, Vector3.forward), _rotationSpeed * Time.fixedDeltaTime));
+                }
+            }
         }
     }
 }

@@ -100,8 +100,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.48, y: 2}
+  m_Offset: {x: 0.02, y: 0.16}
+  m_Size: {x: 0.42, y: 1.64}
   m_Direction: 0
 --- !u!50 &7497220702632344867
 Rigidbody2D:
@@ -143,7 +143,10 @@ MonoBehaviour:
   _vehicleMaxSpeed: 9
   _vehicleDrag: 6
   _vehicleDragLerpSpeed: 10
+  _controlTransitionTime: 0.4
+  _transitionRotationSpeed: 1
   _hasControl: 1
+  _isTransitioning: 0
 --- !u!114 &7497220702632344894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,8 +160,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startWithControl: 0
-  _moveSpeed: 5
+  _moveSpeed: 2
+  _controlTransitionTime: 0.7
+  _transitionDrag: 5
+  _rotationSpeed: 5
   _hasControl: 0
+  _isTransitioning: 0
+  _movement: {x: 0, y: 0}
 --- !u!114 &7497220702632344865
 MonoBehaviour:
   m_ObjectHideFlags: 0

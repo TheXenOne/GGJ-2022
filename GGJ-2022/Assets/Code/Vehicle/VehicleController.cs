@@ -11,9 +11,13 @@ public class VehicleController : MonoBehaviour
     public float _vehicleMaxSpeed = 20f;
     public float _vehicleDrag = 4f;
     public float _vehicleDragLerpSpeed = 10f;
+    public float _controlTransitionTime = 0.4f;
+    public float _transitionRotationSpeed = 1f;
 
     [HideInInspector]
     public bool _hasControl = false;
+    [HideInInspector]
+    public bool _isTransitioning = false;
 
     LandController _landController;
 
@@ -21,6 +25,7 @@ public class VehicleController : MonoBehaviour
     float _steeringInput = 0f;
     float _rotationAngle = 0f;
     float _velocityVsUp = 0f;
+    float _transitionTimer = 0f;
 
     Rigidbody2D _rigidbody;
 
@@ -28,7 +33,10 @@ public class VehicleController : MonoBehaviour
     {
         _hasControl = true;
         _landController._hasControl = false;
+        _landController._isTransitioning = false;
+        _isTransitioning = true;
         _rigidbody.constraints = RigidbodyConstraints2D.None;
+        _rigidbody.drag = 0f;
     }
 
     void Awake()
@@ -47,8 +55,19 @@ public class VehicleController : MonoBehaviour
     {
         if (_hasControl)
         {
-            _steeringInput = Input.GetAxis("Horizontal");
-            _accelerationInput = Input.GetAxis("Vertical");
+            if (_isTransitioning)
+            {
+                _transitionTimer += Time.deltaTime;
+                if (_transitionTimer > _controlTransitionTime)
+                {
+                    _isTransitioning = false;
+                }
+            }
+            else
+            {
+                _steeringInput = Input.GetAxis("Horizontal");
+                _accelerationInput = Input.GetAxis("Vertical");
+            }
         }
     }
 
@@ -56,11 +75,24 @@ public class VehicleController : MonoBehaviour
     {
         if (_hasControl)
         {
-            ApplyEngineForce();
+            if (_isTransitioning)
+            {
+                if (_rigidbody.velocity.sqrMagnitude > 0f)
+                {
+                    //Vector2 norm = _rigidbody.velocity.normalized;
+                    //float targetAngle = (Mathf.Atan2(norm.y, norm.x) - 45f) * Mathf.Rad2Deg;
 
-            ApplyDrift();
+                    //_rigidbody.MoveRotation(Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(targetAngle, Vector3.forward), _transitionRotationSpeed * Time.fixedDeltaTime));
+                }
+            }
+            else
+            {
+                ApplyEngineForce();
 
-            ApplySteering();
+                ApplyDrift();
+
+                ApplySteering();
+            }
         }
     }
 
