@@ -7,6 +7,7 @@ public class PlayerSensingComponent : MonoBehaviour
     public GameObject playerRef;
     public LayerMask obstructionMask;
     public bool canSeePlayer;
+    public bool canSensePlayer;
     [Range(0, 360)]
     public float angle;
     public float radius;
@@ -15,6 +16,10 @@ public class PlayerSensingComponent : MonoBehaviour
     void Start()
     {
         canSeePlayer = false;
+    }
+
+    void Awake()
+    {
         playerRef = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -23,9 +28,10 @@ public class PlayerSensingComponent : MonoBehaviour
         Transform target = playerRef.transform;
         Vector3 toTargetDir = (target.position - transform.position);
         float distToTarget = toTargetDir.magnitude;
-
+        canSensePlayer = false;
         if (distToTarget < radius)
         {
+            canSensePlayer = true;
             if (Vector3.Angle(transform.up, toTargetDir) < angle / 2)
             {
                 if (!Physics.Raycast(transform.position, toTargetDir, distToTarget, obstructionMask))
