@@ -9,6 +9,7 @@ public class VehicleController : MonoBehaviour
     public float _vehicleDrift = 0.5f;
     public float _vehicleMaxSpeed = 20f;
     public float _vehicleDrag = 4f;
+    public float _vehicleDragLerpSpeed = 10f;
 
     float _accelerationInput = 0f;
     float _steeringInput = 0f;
@@ -51,7 +52,7 @@ public class VehicleController : MonoBehaviour
         if (_rigidbody.velocity.sqrMagnitude > _vehicleMaxSpeed * _vehicleMaxSpeed && _accelerationInput > 0)
             return;
 
-        _rigidbody.drag = Mathf.Approximately(_accelerationInput, 0f) ? Mathf.Lerp(_rigidbody.drag, _vehicleDrag, Time.fixedDeltaTime * 10f) : 0f;
+        _rigidbody.drag = Mathf.Approximately(_accelerationInput, 0f) ? Mathf.Lerp(_rigidbody.drag, _vehicleDrag, Time.fixedDeltaTime * _vehicleDragLerpSpeed) : 0f;
 
         Vector2 engineForce = transform.up * _accelerationInput * _vehicleAcceleration;
 
