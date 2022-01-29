@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class VehicleController : MonoBehaviour
 {
+    public bool _startWithControl = false;
     public float _vehicleAcceleration = 18f;
     public float _vehicleTurnSpeed = 7f;
     public float _vehicleDrift = 0.5f;
     public float _vehicleMaxSpeed = 20f;
     public float _vehicleDrag = 4f;
     public float _vehicleDragLerpSpeed = 10f;
+
+    [HideInInspector]
+    public bool _hasControl = false;
+
+    LandController _landController;
 
     float _accelerationInput = 0f;
     float _steeringInput = 0f;
@@ -18,25 +24,45 @@ public class VehicleController : MonoBehaviour
 
     Rigidbody2D _rigidbody;
 
+    public void TakeControl()
+    {
+        _hasControl = true;
+        _landController._hasControl = false;
+        _rigidbody.constraints = RigidbodyConstraints2D.None;
+    }
+
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _landController = GetComponent<LandController>();
+
+
+        if (_startWithControl)
+        {
+            TakeControl();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        _steeringInput = Input.GetAxis("Horizontal");
-        _accelerationInput = Input.GetAxis("Vertical");
+        if (_hasControl)
+        {
+            _steeringInput = Input.GetAxis("Horizontal");
+            _accelerationInput = Input.GetAxis("Vertical");
+        }
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        ApplyEngineForce();
+        if (_hasControl)
+        {
+            ApplyEngineForce();
 
-        ApplyDrift();
+            ApplyDrift();
 
-        ApplySteering();
+            ApplySteering();
+        }
     }
 
     void ApplyEngineForce()
