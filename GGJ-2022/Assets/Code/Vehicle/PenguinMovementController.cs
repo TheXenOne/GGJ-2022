@@ -9,16 +9,18 @@ public class PenguinMovementController : MonoBehaviour
         public float speed = 5.0f;
         public Vector2 position;
         public Vector2 velocity;
-        public float maxAngularSpeed = 5.0f;
     }
 
     SteeringOutput steer;
     SeekBehaviour seek;
+    FleeBehaviour flee;
     WanderBehaviour wander;
     PlayerSensingComponent psRef;
     AgentInfo agentInfo;
     Rigidbody2D _rigidbody;
     GameObject ply;
+    Chonkfactory chimkyPly;
+    Chonkfactory chimkyPinky;
 
     public class SteeringOutput
     {
@@ -73,12 +75,14 @@ public class PenguinMovementController : MonoBehaviour
         public float WanderAngle = 0.0f; //Internal
     }
 
-    public struct BehaviourAndWeight
+    public class FleeBehaviour : SeekBehaviour
     {
-        public SteeringBehaviour steeringBeh;
-        public float Weight;
-
-
+        public override SteeringOutput CalcSteering(AgentInfo info)
+        {
+            SteeringOutput steering = base.CalcSteering(info);
+            steering.velocity = steering.velocity * -1;
+            return steering;
+        }
     }
 
     float GetOrientationFromVelocity(Vector2 veloo)
@@ -88,15 +92,12 @@ public class PenguinMovementController : MonoBehaviour
 		return -Mathf.Atan2(veloo.x, veloo.y);
     }
 
-void Awake()
-    {
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         psRef = GetComponent<PlayerSensingComponent>();
         seek = new SeekBehaviour();
+        flee = new FleeBehaviour();
         agentInfo = new AgentInfo();
         _rigidbody = GetComponent<Rigidbody2D>();
         steer = new SteeringOutput();
@@ -108,10 +109,24 @@ void Awake()
     void Update()
     {
         //Device movementbehaviour
-        if (psRef.canSeePlayer && ply)
+        //TODO(stijn): if fleeing too far stop and start wandering again 
+        if (psRef.canSensePlayer)
         {
-            steer = seek.CalcSteering(agentInfo);
-            seek.movementTarget = ply.transform.position;
+            if (chimkyPly == null) chimkyPly = psRef.playerRef.GetComponent<Chonkfactory>();
+            if (chimkyPinky == null) chimkyPinky = gameObject.GetComponent<Chonkfactory>();
+            if (psRef.canSeePlayer)
+            {
+                if(chimkyPly.Chonk >= chimkyPinky.Chonk)
+                {
+                    flee.movementTarget = psRef.playerRef.transform.position;
+                    steer = flee.CalcSteering(agentInfo);
+                }
+                else if(ply)
+                {
+                    seek.movementTarget = ply.transform.position;
+                    steer = seek.CalcSteering(agentInfo);
+                }
+            }
         }
         else
             steer = wander.CalcSteering(agentInfo);
