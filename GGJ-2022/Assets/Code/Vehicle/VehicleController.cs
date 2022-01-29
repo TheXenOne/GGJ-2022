@@ -64,6 +64,9 @@ public class VehicleController : MonoBehaviour
         float velocitySteerToggle = _rigidbody.velocity.magnitude / 8;
         velocitySteerToggle = Mathf.Clamp01(velocitySteerToggle);
 
+        if (_accelerationInput < 0f)
+            _steeringInput = -_steeringInput;
+
         _rotationAngle -= _steeringInput * _vehicleTurnSpeed * velocitySteerToggle;
 
         _rigidbody.MoveRotation(_rotationAngle);
