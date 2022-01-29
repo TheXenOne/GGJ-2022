@@ -368,7 +368,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _currentHealth: 100
-  _slider: {fileID: 415769952}
+  _damageParticlePrefab: {fileID: 5329031114299377995, guid: 9a4645e419c4bec44932c749c8e74f38, type: 3}
+  _healthUISlider: {fileID: 415769952}
 --- !u!1 &504945778
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,14 +813,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.33, y: 0.33}
   m_EdgeRadius: 0
 --- !u!212 &1823382652
 SpriteRenderer:
@@ -861,8 +862,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.45490196}
+  m_Sprite: {fileID: 21300000, guid: f0cfc6a07dead024b902e0d8530566b8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -8,7 +8,8 @@ public class HealthComponent : MonoBehaviour
     public float _maxHealth = 100f;
     public float _currentHealth = 100f;
 
-    public Slider _slider;
+    public GameObject _damageParticlePrefab;
+    public Slider _healthUISlider;
 
     public void AddHealth(float healthToAdd)
     {
@@ -18,6 +19,11 @@ public class HealthComponent : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _currentHealth = Mathf.Clamp(_currentHealth - damage, 0f, _maxHealth);
+
+        if (_damageParticlePrefab != null)
+        {
+            Instantiate(_damageParticlePrefab, transform.position, Quaternion.identity);
+        }
     }
 
     public void AddMaxHealth(float healthToAdd)
@@ -32,9 +38,9 @@ public class HealthComponent : MonoBehaviour
 
     private void Update()
     {
-        if (_slider != null)
+        if (_healthUISlider != null)
         {
-            _slider.value = _currentHealth / _maxHealth;
+            _healthUISlider.value = _currentHealth / _maxHealth;
         }
     }
 }
