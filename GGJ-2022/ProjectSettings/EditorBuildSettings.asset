@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WaterScene.unity
     guid: 8845f3dc76664eb4d8bc560d83c0ddc3
+  - enabled: 1
+    path: Assets/Scenes/TilesetTest.unity
+    guid: 5d274b9e967d083419f1532c7b53e682
   m_configObjects: {}
