@@ -43,12 +43,18 @@ public class LandController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _movement.x = Input.GetAxis("Horizontal");
-        _movement.y = Input.GetAxis("Vertical");
+        if (_hasControl)
+        {
+            _movement.x = Input.GetAxis("Horizontal");
+            _movement.y = Input.GetAxis("Vertical");
+        }
     }
 
     void FixedUpdate()
     {
-        _rigidbody.MovePosition(_rigidbody.position + _movement * _moveSpeed * Time.fixedDeltaTime);
+        if (_hasControl)
+        {
+            _rigidbody.MovePosition(_rigidbody.position + _movement * _moveSpeed * Time.fixedDeltaTime);
+        }
     }
 }

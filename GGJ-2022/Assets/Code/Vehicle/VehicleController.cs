@@ -36,7 +36,6 @@ public class VehicleController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _landController = GetComponent<LandController>();
 
-
         if (_startWithControl)
         {
             TakeControl();
