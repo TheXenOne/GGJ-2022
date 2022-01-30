@@ -22,6 +22,11 @@ public class PenguinMovementController : MonoBehaviour
     Chonkfactory chimkyPly;
     Chonkfactory chimkyPinky;
 
+    public float _wanderSoundRandomRange = 5f;
+    public float _aggroSoundRandomRange = 5f;
+
+    float _currentTimer = 0f;
+
     public class SteeringOutput
     {
         public Vector2 velocity = new Vector2();
@@ -116,12 +121,12 @@ public class PenguinMovementController : MonoBehaviour
             if (chimkyPinky == null) chimkyPinky = gameObject.GetComponent<Chonkfactory>();
             if (psRef.canSeePlayer)
             {
-                if(chimkyPly.Chonk >= chimkyPinky.Chonk)
+                if (chimkyPly.Chonk >= chimkyPinky.Chonk)
                 {
                     flee.movementTarget = psRef.playerRef.transform.position;
                     steer = flee.CalcSteering(agentInfo);
                 }
-                else if(ply)
+                else if (ply)
                 {
                     seek.movementTarget = ply.transform.position;
                     steer = seek.CalcSteering(agentInfo);
@@ -129,7 +134,9 @@ public class PenguinMovementController : MonoBehaviour
             }
         }
         else
+        {
             steer = wander.CalcSteering(agentInfo);
+        }
 
         //Linear movement
         Vector2 linVel = _rigidbody.velocity;
