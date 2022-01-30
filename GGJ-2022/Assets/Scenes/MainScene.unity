@@ -1456,6 +1456,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8341687071211755708, guid: 02a382edf0429a9479137e094168a10d, type: 3}
+      propertyPath: _chaseAudioClips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8341687071211755708, guid: 02a382edf0429a9479137e094168a10d, type: 3}
+      propertyPath: _chaseAudioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 40d9903f21e85fb43aa39eba3d868e30, type: 3}
+    - target: {fileID: 8341687071211755708, guid: 02a382edf0429a9479137e094168a10d, type: 3}
+      propertyPath: _wanderingAudioClips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8341687071211755708, guid: 02a382edf0429a9479137e094168a10d, type: 3}
+      propertyPath: _wanderingAudioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 40d9903f21e85fb43aa39eba3d868e30, type: 3}
     - target: {fileID: 8341687071211755709, guid: 02a382edf0429a9479137e094168a10d, type: 3}
       propertyPath: m_Name
       value: BigChungus

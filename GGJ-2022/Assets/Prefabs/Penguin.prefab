@@ -152,6 +152,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 54dfd74b7cfab804ca5ad106f9ceb5a5, type: 3}
   - {fileID: 8300000, guid: adfa369af3b527944ade5eb0d7bee328, type: 3}
   _randomNoiseTimeRange: {x: 4, y: 7}
+  _randomNoisePitchRange: 0.2
 --- !u!114 &3532350275267183184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +251,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
