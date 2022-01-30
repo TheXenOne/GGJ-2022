@@ -28,6 +28,7 @@ public class VehicleController : MonoBehaviour
     float _transitionTimer = 0f;
 
     Rigidbody2D _rigidbody;
+    HealthComponent _playerHealth;
 
     public void TakeControl()
     {
@@ -43,6 +44,7 @@ public class VehicleController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _landController = GetComponent<LandController>();
+        _playerHealth = GetComponent<HealthComponent>();
 
         if (_startWithControl)
         {
@@ -61,6 +63,7 @@ public class VehicleController : MonoBehaviour
                 if (_transitionTimer > _controlTransitionTime)
                 {
                     _isTransitioning = false;
+                    _playerHealth._immune = false;
                 }
             }
             else
