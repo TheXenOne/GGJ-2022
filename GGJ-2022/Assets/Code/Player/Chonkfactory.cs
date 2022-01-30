@@ -8,6 +8,7 @@ public class Chonkfactory : MonoBehaviour
     public int MaxChonkas;
     public int Chonk;
     public Vector2 ScaleAtMaxChonk;
+    public bool _isPlayer = false;
 
     [HideInInspector]
     public int InitialChonk = 0;
@@ -16,6 +17,12 @@ public class Chonkfactory : MonoBehaviour
     public Action _winDelegate;
 
     Vector2 startScale;
+    static int _playerChonk = 5;
+
+    private void Awake()
+    {
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +33,10 @@ public class Chonkfactory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_isPlayer)
+        {
+            _playerChonk = Chonk;
+        }
         transform.localScale = Vector3.Lerp(startScale, ScaleAtMaxChonk, Chonk / (float)MaxChonkas);
     }
 
@@ -50,7 +61,19 @@ public class Chonkfactory : MonoBehaviour
                         _winDelegate();
                 }
                 else
-                    Destroy(incomiiiiiiinnnnggg);
+                {
+                    if (GetComponent<PenguinMovementController>() != null) // Peng eating peng
+                    {
+                        if (Chonk - bigberthaScale.Chonk < _playerChonk * 0.5f)
+                        {
+                            Destroy(incomiiiiiiinnnnggg);
+                        }
+                    }
+                    else // Player eating peng
+                    {
+                        Destroy(incomiiiiiiinnnnggg);
+                    }
+                }
             }
         }
     }

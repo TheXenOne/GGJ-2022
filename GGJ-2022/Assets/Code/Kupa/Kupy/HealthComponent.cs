@@ -6,6 +6,7 @@ public class HealthComponent : MonoBehaviour
 {
     public float baseHealth = 100f;
     public float _maxHealth = 10000f;
+    public float _hitCooldown = 0.7f;
 
     [HideInInspector]
     public float _currentHealth = 0.0f;
@@ -23,6 +24,8 @@ public class HealthComponent : MonoBehaviour
 
     SealAudi _sealAudio = null;
 
+    float _hitCooldownCurrent = 0f;
+
     public void Start()
     {
         _sealAudio = GetComponent<SealAudi>();
@@ -36,19 +39,24 @@ public class HealthComponent : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        _currentHealth = Mathf.Clamp(_currentHealth - damage, 0f, _maxHealth);
-
-        _sealAudio?.Damaged();
-
-        if (_currentHealth <= 0f)
+        if (!_immune && _hitCooldownCurrent <= 0.01f)
         {
-            _isDead = true;
-            OnDeath();
-        }
+            _currentHealth = Mathf.Clamp(_currentHealth - damage, 0f, _maxHealth);
 
-        if (_damageParticlePrefab != null)
-        {
-            Instantiate(_damageParticlePrefab, transform.position, Quaternion.identity);
+            _hitCooldownCurrent = _hitCooldown;
+
+            _sealAudio?.Damaged();
+
+            if (_currentHealth <= 0f)
+            {
+                _isDead = true;
+                OnDeath();
+            }
+
+            if (_damageParticlePrefab != null)
+            {
+                Instantiate(_damageParticlePrefab, transform.position, Quaternion.identity);
+            }
         }
     }
 
@@ -77,6 +85,8 @@ public class HealthComponent : MonoBehaviour
 
     private void Update()
     {
+        _hitCooldownCurrent -= Time.deltaTime;
+
         if (_healthUISlider != null && gameObject.CompareTag("Player"))
         {
             _healthUISlider.value = _currentHealth / _maxHealth;

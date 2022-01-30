@@ -41,6 +41,7 @@ public class VehicleController : MonoBehaviour
         _rigidbody.constraints = RigidbodyConstraints2D.None;
         _rigidbody.drag = 0f;
         _particleTrail.SetActive(true);
+        _rotationAngle = (Mathf.Atan2(-_landController._movement.x, _landController._movement.y)) * Mathf.Rad2Deg;
     }
 
     void Awake()
@@ -87,10 +88,15 @@ public class VehicleController : MonoBehaviour
             {
                 if (_rigidbody.velocity.sqrMagnitude > 0f)
                 {
-                    //Vector2 norm = _rigidbody.velocity.normalized;
-                    //float targetAngle = (Mathf.Atan2(norm.y, norm.x) - 45f) * Mathf.Rad2Deg;
+                    //float velocitySteerToggle = _rigidbody.velocity.magnitude / 8;
+                    //velocitySteerToggle = Mathf.Clamp01(velocitySteerToggle);
 
-                    //_rigidbody.MoveRotation(Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(targetAngle, Vector3.forward), _transitionRotationSpeed * Time.fixedDeltaTime));
+                    //if (_accelerationInput < 0f)
+                    //    _steeringInput = -_steeringInput;
+
+                    //_rotationAngle -= _steeringInput * _vehicleTurnSpeed * velocitySteerToggle;
+
+                    //_rigidbody.MoveRotation(Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(_rotationAngle, Vector3.forward), _transitionRotationSpeed * Time.fixedDeltaTime));
                 }
             }
             else
