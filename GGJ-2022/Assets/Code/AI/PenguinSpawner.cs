@@ -28,7 +28,7 @@ public class PenguinSpawner : MonoBehaviour
             {
                 int i = 0;
                 bool penguResult = false;
-                while (i < 20 && !penguResult)
+                while (i < 100 && !penguResult)
                 {
                     penguResult = TrySpawnPengy();
                 }
