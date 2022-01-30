@@ -4,8 +4,11 @@ using UnityEngine.UI;
 
 public class HealthComponent : MonoBehaviour
 {
-    public float _maxHealth = 100f;
-    public float _currentHealth = 100f;
+    public float baseHealth = 100f;
+    public float _maxHealth = 10000f;
+
+    [HideInInspector]
+    public float _currentHealth = 0.0f;
 
     public GameObject _damageParticlePrefab;
     public GameObject _deathParticlePrefab;
@@ -17,6 +20,11 @@ public class HealthComponent : MonoBehaviour
     public Action _deathDelegate;
     [HideInInspector]
     public bool _immune = false;
+
+    public void Start()
+    {
+        _currentHealth = baseHealth;
+    }
 
     public void AddHealth(float healthToAdd)
     {
@@ -64,7 +72,7 @@ public class HealthComponent : MonoBehaviour
 
     private void Update()
     {
-        if (_healthUISlider != null)
+        if (_healthUISlider != null && gameObject.CompareTag("Player"))
         {
             _healthUISlider.value = _currentHealth / _maxHealth;
         }

@@ -66,7 +66,7 @@ public class PenguinSpawner : MonoBehaviour
         }
 
         Vector3 v3Pos = Camera.main.ViewportToWorldPoint(new Vector3(positionOutOfView.x, positionOutOfView.y, 0.0f));
-        v3Pos.z = -5.0f;
+        v3Pos.z = -4.351125f;
 
         LayerMask mask = LayerMask.GetMask("PenguinCollider");
         RaycastHit2D hit = Physics2D.BoxCast(v3Pos, penguin.GetComponent<Collider2D>().bounds.size * 0.5f, 0f, Vector2.zero, mask);

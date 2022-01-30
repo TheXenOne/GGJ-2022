@@ -7,13 +7,16 @@ using UnityEngine.UI;
 public class PlayCanvas : MonoBehaviour
 {
     public Text _failText;
+    public Text _winText;
     public Button _mainMenuButton;
 
     HealthComponent _playerHealth;
+    Chonkfactory _chonkies;
 
     public void HideMenu()
     {
         _failText.gameObject.SetActive(false);
+        _winText.gameObject.SetActive(false);
         _mainMenuButton.gameObject.SetActive(false);
     }
 
@@ -23,10 +26,18 @@ public class PlayCanvas : MonoBehaviour
         _mainMenuButton.gameObject.SetActive(true);
     }
 
+    public void ShowMenuYouChamp()
+    {
+        _winText.gameObject.SetActive(true);
+        _mainMenuButton.gameObject.SetActive(true);
+    }
+
     void Awake()
     {
         _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthComponent>();
+        _chonkies = GameObject.FindGameObjectWithTag("Player").GetComponent<Chonkfactory>();
         _playerHealth._deathDelegate = ShowMenu;
+        _chonkies._winDelegate = ShowMenuYouChamp;
     }
 
     void Start()

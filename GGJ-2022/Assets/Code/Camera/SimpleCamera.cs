@@ -27,7 +27,7 @@ public class SimpleCamera : MonoBehaviour
             transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);
         }
 
-        float getRatiod = (float)_chonkers.Chonk / (float)_chonkers.InitialChonk;
-        _cammyBoi.orthographicSize = _originalCamSize * Mathf.Clamp(getRatiod * 0.25f, 1f, float.MaxValue);
+        float getRatiod = _chonkers.Chonk / (float)_chonkers.MaxChonkas;
+        _cammyBoi.orthographicSize = _originalCamSize * Mathf.Clamp(getRatiod * 5.0f, 1f, float.MaxValue);
     }
 }
