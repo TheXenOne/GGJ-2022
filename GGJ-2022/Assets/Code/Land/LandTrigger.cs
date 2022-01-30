@@ -11,7 +11,12 @@ public class LandTrigger : MonoBehaviour
         if (vehController != null && vehController._hasControl)
         {
             LandController landController = collision.gameObject.GetComponent<LandController>();
-            landController.TakeControl();
+            var chonkcomp = collision.gameObject.GetComponent<Chonkfactory>();
+
+            if (chonkcomp.Chonk < 20)
+            {
+                landController.TakeControl();
+            }
         }
     }
 
