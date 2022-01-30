@@ -22,6 +22,10 @@ public class PenguinMovementController : MonoBehaviour
     Chonkfactory chimkyPly;
     Chonkfactory chimkyPinky;
 
+    public Vector2 _randomNoiseRange = new Vector2(4f, 7f);
+
+    private float _currentNoiseTimer = 0f;
+
     public class SteeringOutput
     {
         public Vector2 velocity = new Vector2();
