@@ -187,14 +187,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 125557029, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
-      propertyPath: ScaleAtMaxChonk.x
-      value: 5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 125557029, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
-      propertyPath: ScaleAtMaxChonk.y
-      value: 4.8
-      objectReference: {fileID: 0}
     - target: {fileID: 7497220702632344865, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
       propertyPath: _healthUISlider
       value: 
