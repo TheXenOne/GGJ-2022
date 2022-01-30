@@ -22,9 +22,13 @@ public class PenguinMovementController : MonoBehaviour
     Chonkfactory chimkyPly;
     Chonkfactory chimkyPinky;
 
-    public Vector2 _randomNoiseRange = new Vector2(4f, 7f);
+    public List<AudioClip> _wanderingAudioClips;
+    public List<AudioClip> _chaseAudioClips;
+    public Vector2 _randomNoiseTimeRange = new Vector2(11f, 17f);
+    public float _randomNoisePitchRange = 0.2f;
 
-    private float _currentNoiseTimer = 0f;
+    float _currentNoiseTimer = 0f;
+    AudioSource _audio;
 
     public class SteeringOutput
     {
@@ -107,11 +111,20 @@ public class PenguinMovementController : MonoBehaviour
         steer = new SteeringOutput();
         wander = new WanderBehaviour();
         ply = psRef.playerRef;
+        _audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        _currentNoiseTimer -= Time.deltaTime;
+        _currentNoiseTimer = Mathf.Clamp(_currentNoiseTimer, 0f, float.MaxValue);
+        if (_currentNoiseTimer <= 0f)
+        {
+            PlayNoise();
+            _currentNoiseTimer = Random.Range(_randomNoiseTimeRange.x, _randomNoiseTimeRange.y);
+        }
+
         //Device movementbehaviour
         //TODO(stijn): if fleeing too far stop and start wandering again 
         steer = wander.CalcSteering(agentInfo);
@@ -146,5 +159,24 @@ public class PenguinMovementController : MonoBehaviour
 
         agentInfo.position = transform.position;
         agentInfo.velocity = _rigidbody.velocity;
+    }
+
+    void PlayNoise()
+    {
+        AudioClip clip = null;
+
+        if (psRef.canSensePlayer && psRef.canSeePlayer && _chaseAudioClips.Count > 0)
+        {
+            clip = _chaseAudioClips[Mathf.RoundToInt(Random.Range(0, _chaseAudioClips.Count - 1))];
+        }
+        else if (_wanderingAudioClips.Count > 0)
+        {
+            clip = _wanderingAudioClips[Mathf.RoundToInt(Random.Range(0, _wanderingAudioClips.Count - 1))];
+        }
+
+        _audio.pitch = Random.Range(1f - _randomNoisePitchRange, 1f + _randomNoisePitchRange);
+
+        if (clip != null)
+            _audio.PlayOneShot(clip);
     }
 }
