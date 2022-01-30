@@ -26,42 +26,62 @@ public class PenguinSpawner : MonoBehaviour
         {
             if (penguin != null)
             {
-                int randBorder = Random.Range(0, 4);
-                Vector2 positionOutOfView = new Vector2();
-                float anyRandom = Random.value;
-                float outRandomMax = Random.Range(1.1f, 1.5f);
-                float outRandomMin = Random.Range(-0.5f, 0.1f);
-
-                switch (randBorder)
+                int i = 0;
+                bool penguResult = false;
+                while (i < 20 && !penguResult)
                 {
-                    case 0://up
-                        positionOutOfView.x = anyRandom;
-                        positionOutOfView.y = outRandomMax;
-                        break;
-                    case 1://right
-                        positionOutOfView.x = outRandomMax;
-                        positionOutOfView.y = anyRandom;
-                        break;
-                    case 2://down
-                        positionOutOfView.x = anyRandom;
-                        positionOutOfView.y = outRandomMin;
-                        break;
-                    case 3://left
-                        positionOutOfView.x = outRandomMin;
-                        positionOutOfView.y = anyRandom;
-                        break;
+                    penguResult = TrySpawnPengy();
                 }
-
-                Vector3 v3Pos = Camera.main.ViewportToWorldPoint(new Vector3(positionOutOfView.x, positionOutOfView.y, 0.0f));
-                v3Pos.z = -5.0f;
-                GameObject newPengu = Instantiate(penguin, v3Pos, Quaternion.identity);
-
-                int randomChonk = Random.Range(0, ThisIsOurMaxChoinks);
-                Chonkfactory chedoinks = newPengu.GetComponent<Chonkfactory>();
-                if(chedoinks) chedoinks.Chonk = randomChonk;
             }
             yield return new WaitForSeconds(SpawnDelay);
         }
+    }
+
+    bool TrySpawnPengy()
+    {
+        int randBorder = Random.Range(0, 4);
+        Vector2 positionOutOfView = new Vector2();
+        float anyRandom = Random.value;
+        float outRandomMax = Random.Range(1.1f, 1.5f);
+        float outRandomMin = Random.Range(-0.5f, 0.1f);
+
+        switch (randBorder)
+        {
+            case 0://up
+                positionOutOfView.x = anyRandom;
+                positionOutOfView.y = outRandomMax;
+                break;
+            case 1://right
+                positionOutOfView.x = outRandomMax;
+                positionOutOfView.y = anyRandom;
+                break;
+            case 2://down
+                positionOutOfView.x = anyRandom;
+                positionOutOfView.y = outRandomMin;
+                break;
+            case 3://left
+                positionOutOfView.x = outRandomMin;
+                positionOutOfView.y = anyRandom;
+                break;
+        }
+
+        Vector3 v3Pos = Camera.main.ViewportToWorldPoint(new Vector3(positionOutOfView.x, positionOutOfView.y, 0.0f));
+        v3Pos.z = -5.0f;
+
+        LayerMask mask = LayerMask.GetMask("PenguinCollider");
+        RaycastHit2D hit = Physics2D.BoxCast(v3Pos, penguin.GetComponent<Collider2D>().bounds.size * 0.5f, 0f, Vector2.zero, mask);
+        if (hit)
+        {
+            return false;
+        }
+
+        GameObject newPengu = Instantiate(penguin, v3Pos, Quaternion.identity);
+
+        int randomChonk = Random.Range(0, ThisIsOurMaxChoinks);
+        Chonkfactory chedoinks = newPengu.GetComponent<Chonkfactory>();
+        if (chedoinks) chedoinks.Chonk = randomChonk;
+
+        return true;
     }
 
     // Update is called once per frame
