@@ -21,6 +21,7 @@ public class LandController : MonoBehaviour
     VehicleController _vehicleController;
     Rigidbody2D _rigidbody;
     float _transitionTimer = 0f;
+    HealthComponent _playerHealth;
 
     public void TakeControl()
     {
@@ -30,12 +31,14 @@ public class LandController : MonoBehaviour
         _isTransitioning = true;
         _transitionTimer = 0f;
         _rigidbody.drag = _transitionDrag;
+        _playerHealth._immune = true;
     }
 
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _vehicleController = GetComponent<VehicleController>();
+        _playerHealth = GetComponent<HealthComponent>();
 
         if (_startWithControl)
         {

@@ -18,6 +18,8 @@ public class HealthComponent : MonoBehaviour
     public bool _isDead = false;
     [HideInInspector]
     public Action _deathDelegate;
+    [HideInInspector]
+    public bool _immune = false;
 
     public void Start()
     {
