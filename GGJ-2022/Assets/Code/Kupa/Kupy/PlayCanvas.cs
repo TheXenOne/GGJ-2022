@@ -24,6 +24,9 @@ public class PlayCanvas : MonoBehaviour
     {
         _failText.gameObject.SetActive(true);
         _mainMenuButton.gameObject.SetActive(true);
+
+        _playerHealth.gameObject.GetComponent<LandController>()._hasControl = false;
+        _playerHealth.gameObject.GetComponent<VehicleController>()._hasControl = false;
     }
 
     public void ShowMenuYouChamp()

@@ -21,8 +21,11 @@ public class HealthComponent : MonoBehaviour
     [HideInInspector]
     public bool _immune = false;
 
+    SealAudi _sealAudio = null;
+
     public void Start()
     {
+        _sealAudio = GetComponent<SealAudi>();
         _currentHealth = baseHealth;
     }
 
@@ -34,6 +37,8 @@ public class HealthComponent : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _currentHealth = Mathf.Clamp(_currentHealth - damage, 0f, _maxHealth);
+
+        _sealAudio?.Damaged();
 
         if (_currentHealth <= 0f)
         {
