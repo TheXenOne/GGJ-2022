@@ -23,7 +23,7 @@ public class Pickup : MonoBehaviour
 
             var healthcomp = collision.gameObject.GetComponent<HealthComponent>();
             healthcomp.AddMaxHealth(randomchonk);
-            healthcomp.AddHealth(randomchonk);
+            healthcomp.AddHealth(randomchonk * 3f);
 
             Destroy(transform.GetChild(0).gameObject);
             Destroy(gameObject);

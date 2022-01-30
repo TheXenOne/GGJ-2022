@@ -28,6 +28,7 @@ public class LandController : MonoBehaviour
         _hasControl = true;
         _vehicleController._hasControl = false;
         _vehicleController._isTransitioning = false;
+        _vehicleController._particleTrail.SetActive(false);
         _isTransitioning = true;
         _transitionTimer = 0f;
         _rigidbody.drag = _transitionDrag;

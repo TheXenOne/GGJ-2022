@@ -18,6 +18,8 @@ public class VehicleController : MonoBehaviour
     public bool _hasControl = false;
     [HideInInspector]
     public bool _isTransitioning = false;
+    [HideInInspector]
+    public GameObject _particleTrail;
 
     LandController _landController;
 
@@ -38,6 +40,7 @@ public class VehicleController : MonoBehaviour
         _isTransitioning = true;
         _rigidbody.constraints = RigidbodyConstraints2D.None;
         _rigidbody.drag = 0f;
+        _particleTrail.SetActive(true);
     }
 
     void Awake()
@@ -45,6 +48,8 @@ public class VehicleController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _landController = GetComponent<LandController>();
         _playerHealth = GetComponent<HealthComponent>();
+        _particleTrail = transform.GetChild(0).gameObject;
+        _particleTrail.SetActive(false);
 
         if (_startWithControl)
         {
