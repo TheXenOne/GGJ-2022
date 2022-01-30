@@ -110,6 +110,7 @@ public class PenguinMovementController : MonoBehaviour
     {
         //Device movementbehaviour
         //TODO(stijn): if fleeing too far stop and start wandering again 
+        steer = wander.CalcSteering(agentInfo);
         if (psRef.canSensePlayer)
         {
             if (chimkyPly == null) chimkyPly = psRef.playerRef.GetComponent<Chonkfactory>();
@@ -128,8 +129,6 @@ public class PenguinMovementController : MonoBehaviour
                 }
             }
         }
-        else
-            steer = wander.CalcSteering(agentInfo);
 
         //Linear movement
         Vector2 linVel = _rigidbody.velocity;

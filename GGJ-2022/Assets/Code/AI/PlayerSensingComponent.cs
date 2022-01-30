@@ -34,7 +34,7 @@ public class PlayerSensingComponent : MonoBehaviour
             canSensePlayer = true;
             if (Vector3.Angle(transform.up, toTargetDir) < angle / 2)
             {
-                if (!Physics.Raycast(transform.position, toTargetDir, distToTarget, obstructionMask))
+                if (!Physics2D.Raycast(transform.position, toTargetDir, distToTarget, obstructionMask))
                     return true;
             }
         }

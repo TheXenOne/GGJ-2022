@@ -10,11 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8341687071211755707}
   - component: {fileID: 8341687071211755704}
-  - component: {fileID: 8341687071211755705}
   - component: {fileID: 8341687071211755710}
   - component: {fileID: 8341687071211755711}
   - component: {fileID: 8341687071211755708}
   - component: {fileID: 3532350275267183184}
+  - component: {fileID: 4648123329068483820}
+  - component: {fileID: -7822374255830782582}
+  - component: {fileID: -8707003470696417252}
   m_Layer: 7
   m_Name: Penguin
   m_TagString: Untagged
@@ -30,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8341687071211755709}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -4.351125}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -57,22 +59,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &8341687071211755705
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8341687071211755709}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.15
 --- !u!212 &8341687071211755710
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -113,12 +99,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 04f6912eee2e7464d8f82b13241e962b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8834a213e6bdad4468fc8e5234012bef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -139,7 +125,7 @@ MonoBehaviour:
   playerRef: {fileID: 0}
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
   canSeePlayer: 0
   canSensePlayer: 0
   angle: 360
@@ -168,6 +154,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e5729e8582e5f4e9967e5e64a56422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxChonkas: 6
+  MaxChonkas: 10
   Chonk: 1
-  ScaleAtMaxChonk: {x: 4, y: 4}
+  ScaleAtMaxChonk: {x: 10, y: 10}
+  InitialChonk: 0
+--- !u!114 &4648123329068483820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8341687071211755709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5b3ca0f17ea2f4fac2fada34f3d8c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  penguIsDown: {fileID: 21300000, guid: 8834a213e6bdad4468fc8e5234012bef, type: 3}
+  penguIsHappy: {fileID: 21300000, guid: 8834a213e6bdad4468fc8e5234012bef, type: 3}
+  penguIsAlwaysRight: {fileID: 21300000, guid: 3d7e88a0c25f8444d9a4acac2997d16c, type: 3}
+--- !u!114 &-7822374255830782582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8341687071211755709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c62f86eff4dc9614c9a7188a24774938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHealth: 1
+  _maxHealth: 1
+  _currentHealth: 1
+  _damageParticlePrefab: {fileID: 5329031114299377995, guid: 9a4645e419c4bec44932c749c8e74f38, type: 3}
+  _deathParticlePrefab: {fileID: 5329031114299377995, guid: 18e26a254c4a6924bb67993afb78ed1d, type: 3}
+  _healthUISlider: {fileID: 0}
+  _isDead: 0
+--- !u!61 &-8707003470696417252
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8341687071211755709}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.15, y: 0.15}
+  m_EdgeRadius: 0
