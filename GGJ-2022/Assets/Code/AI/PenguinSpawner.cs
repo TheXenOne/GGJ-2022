@@ -53,7 +53,7 @@ public class PenguinSpawner : MonoBehaviour
                 }
 
                 Vector3 v3Pos = Camera.main.ViewportToWorldPoint(new Vector3(positionOutOfView.x, positionOutOfView.y, 0.0f));
-                v3Pos.z = 0.0f;
+                v3Pos.z = -5.0f;
                 GameObject newPengu = Instantiate(penguin, v3Pos, Quaternion.identity);
 
                 int randomChonk = Random.Range(0, ThisIsOurMaxChoinks);
