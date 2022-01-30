@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
 	public Button _startButton;
 	public Button _optionsButton;
 	public Button _exitButton;
+	public Image _tutorialObject;
 
 	bool _isPaused = false;
 
@@ -38,6 +39,7 @@ public class MainMenu : MonoBehaviour
 		_startButton.gameObject.SetActive(true);
 		_optionsButton.gameObject.SetActive(true);
 		_exitButton.gameObject.SetActive(true);
+		_tutorialObject.gameObject.SetActive(false);
 	}
 
 	void HideButtons()
@@ -46,6 +48,7 @@ public class MainMenu : MonoBehaviour
 		_startButton.gameObject.SetActive(false);
 		_optionsButton.gameObject.SetActive(false);
 		_exitButton.gameObject.SetActive(false);
+		_tutorialObject.gameObject.SetActive(false);
 	}
 
     void Update()
@@ -76,7 +79,7 @@ public class MainMenu : MonoBehaviour
 
 	void OpenOptions()
     {
-
+		_tutorialObject.gameObject.SetActive(!_tutorialObject.gameObject.activeSelf);
     }
 
 	void ExitGame()
