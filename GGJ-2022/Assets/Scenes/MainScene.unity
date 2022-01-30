@@ -187,6 +187,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 125557029, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
+      propertyPath: ScaleAtMaxChonk.x
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 125557029, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
+      propertyPath: ScaleAtMaxChonk.y
+      value: 4.8
+      objectReference: {fileID: 0}
     - target: {fileID: 7497220702632344865, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
       propertyPath: _healthUISlider
       value: 
@@ -239,10 +247,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Seal
       objectReference: {fileID: 0}
-    - target: {fileID: 7497220702632344871, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
 --- !u!1 &125557028 stripped
@@ -250,21 +254,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7497220702632344871, guid: 1f9de0e0a8a75ba408de341ffaf539fa, type: 3}
   m_PrefabInstance: {fileID: 125557027}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &125557029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125557028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11e5729e8582e5f4e9967e5e64a56422, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxChonkas: 6
-  Chonk: 1
-  ScaleAtMaxChonk: {x: 4, y: 3}
 --- !u!1001 &171119556
 PrefabInstance:
   m_ObjectHideFlags: 0

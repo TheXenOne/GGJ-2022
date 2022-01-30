@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 7497220702632344866}
   - component: {fileID: 7497220702632344894}
   - component: {fileID: 7497220702632344865}
+  - component: {fileID: 125557029}
   m_Layer: 0
   m_Name: Seal
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -182,4 +183,22 @@ MonoBehaviour:
   _maxHealth: 100
   _currentHealth: 100
   _damageParticlePrefab: {fileID: 5329031114299377995, guid: 9a4645e419c4bec44932c749c8e74f38, type: 3}
+  _deathParticlePrefab: {fileID: 5329031114299377995, guid: 18e26a254c4a6924bb67993afb78ed1d, type: 3}
   _healthUISlider: {fileID: 0}
+  _isDead: 0
+--- !u!114 &125557029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7497220702632344871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e5729e8582e5f4e9967e5e64a56422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxChonkas: 6
+  Chonk: 1
+  ScaleAtMaxChonk: {x: 5.5, y: 4.8}
+  InitialChonk: 0
