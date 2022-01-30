@@ -64,10 +64,7 @@ public class Chonkfactory : MonoBehaviour
                 {
                     if (GetComponent<PenguinMovementController>() != null) // Peng eating peng
                     {
-                        if (Chonk - bigberthaScale.Chonk < _playerChonk * 0.5f)
-                        {
-                            Destroy(incomiiiiiiinnnnggg);
-                        }
+                        Destroy(incomiiiiiiinnnnggg);
                     }
                     else // Player eating peng
                     {
